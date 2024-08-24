@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import pandas as pd
 
 # Parameters
 D = 7  # Number of days
@@ -10,6 +11,13 @@ POP_SIZE = 20  # Population size
 GENERATIONS = 1000  # Number of generations
 CROSSOVER_RATE = 0.7
 MUTATION_RATE = 0.01
+
+# Specializations
+specializations = [
+    "Pediatric Nurse", "Infection Control Nurse", 
+    "Trauma Nurse", "Neonatal Nurse", 
+    "General", "Other"
+]
 
 class Individual:
     def __init__(self, n):
@@ -93,10 +101,31 @@ def print_schedule(schedule):
             print()
         print()
 
+def load_spreadsheets():
+    # Load original data spreadsheet
+    original_df = pd.read_excel('nurse_data_original.xlsx')
+
+    # Load or create a temporary copy for modifications
+    try:
+        temp_df = pd.read_excel('nurse_data_temp.xlsx')
+    except FileNotFoundError:
+        temp_df = original_df.copy()
+        temp_df.to_excel('nurse_data_temp.xlsx', index=False)
+
+    return original_df, temp_df
+
 def main():
     random.seed()
 
-    N = int(input("Enter the number of nurses: "))
+    original_df, temp_df = load_spreadsheets()
+
+    # Display loaded data
+    print("Original Data:")
+    print(original_df)
+    print("\nTemporary Data (modifiable):")
+    print(temp_df)
+
+    N = len(temp_df)  # Number of nurses based on the spreadsheet
 
     population = [Individual(N) for _ in range(POP_SIZE)]
     new_population = [Individual(N) for _ in range(POP_SIZE)]
@@ -141,3 +170,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
