@@ -26,7 +26,7 @@ Max 8 hours/day per nurse.
 -  **nurse_data_temp.xlsx      # Modifiable copy of nurse data**
 -  **README.md               # Project documentation**
 
-**  📦 Requirements**
+- **  📦 Requirements**
 Python 3.8+
 
 Packages:
@@ -40,11 +40,11 @@ openpyxl (for reading/writing Excel files)
 
 Max 40 hours/week per nurse.
 
-**Penalty System:**
+- **Penalty System:**
 Penalizes violations of the above constraints.
 
 Fitness is negatively impacted by overworking any nurse.
-🧬 **Algorithm Parameters**
+- 🧬 **Algorithm Parameters**
 You can adjust these at the top of nurse_scheduler.py:
 D = 7           # Number of days
 H = 8           # Hours per day
@@ -52,7 +52,7 @@ POP_SIZE = 20   # Population size
 GENERATIONS = 1000
 CROSSOVER_RATE = 0.7
 MUTATION_RATE = 0.01
-**📝 Example Output**
+- **📝 Example Output**
 Original Data:
   Nurse Name  Specialization
 0    Alice    Pediatric Nurse
